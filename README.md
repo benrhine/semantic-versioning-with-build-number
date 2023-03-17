@@ -17,7 +17,7 @@ duly informed on how this plugin works operationally.
 
 - [How to install](#how-to-install)
 - [What does it do?](#what-does-it-do)
-      - [Print the current version](#print-the-current-version)
+    - [Print the current version](#print-the-current-version)
   - [What is the default version?](#what-is-the-default-version)
   - [Available Tasks](#available-tasks)
     - [Print the current version](#print-the-current-version-1)
