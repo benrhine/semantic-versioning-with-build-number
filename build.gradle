@@ -12,6 +12,9 @@ plugins {
     id 'com.gradle.plugin-publish' version '1.1.0'
 }
 
+ext.vcsUser                                 = System.env.GITHUB_ACTOR         // DO NOT PUT IN PROPERTIES FILE
+ext.vcsPass                                 = System.env.GITHUB_TOKEN   // DO NOT PUT IN PROPERTIES FILE
+
 group 'com.benrhine'
 version '0.0.1-SNAPSHOT'
 
@@ -47,5 +50,34 @@ dependencies {
 task printVersion {
     doLast {
         println "$version"
+    }
+}
+
+/** --------------------------------------------------------------------------------------------------------------------
+ * Publish: Modern way to publish artifacts using the maven-publish plugin (Gradle 7+)
+ *
+ * Currently ./gradlew publish will publish a usable artifact to the local build folder. Once published the artifact
+ * will need to be copied over to the libraries project and pushed to the repository MANUALLY for use. It should
+ * be possible to automatically publish the artifact (see commented out repo block) but currently that configuration
+ * fails due to an xml parse error.
+ *
+ * https://www.jetbrains.com/help/idea/add-a-gradle-library-to-the-maven-repository.html#publish_remote
+ *
+ * ------------------------------------------------------------------------------------------------------------------ */
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/benrhine/libraries")
+            credentials {
+                username = "$vcsUser"
+                password = "$vcsPass"
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
     }
 }
