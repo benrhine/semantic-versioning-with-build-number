@@ -33,21 +33,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-#      - name: Set Gradle Version
-#        shell: bash
-#        run: ./gradlew wrapper --gradle-version=${{ inputs.gradle-version }}
-#      - name: Verify Gradle Version Set
-#        shell: bash
-#        run: ./gradlew -v
       - uses: gradle/wrapper-validation-action@v1
-      - name: Set up JDK ${{ inputs.java-version }}
+      - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          java-version: ${{ inputs.java-version }}
-          distribution: ${{ inputs.jdk-publisher }}         # List of supported jvms https://github.com/actions/setup-java
-          server-id: github                                 # Value of the distributionManagement/repository/id field of the pom.xml
-          settings-path: ${{ github.workspace }}            # location for the settings.xml file
-          #cache: gradle - this causes problems on github build
+          java-version: '17'
+          distribution: 'corretto' # List of supported jvms https://github.com/actions/setup-java
+          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+          settings-path: ${{ github.workspace }} # location for the settings.xml file
+          cache: gradle
 #      - uses: actions/checkout@v3                         # Checkout is required for local action
 #      - name: Configure Java and Gradle Version           # Apply a human-readable name
 #        id: config-java-gradle                            # Apply easy to reference id
