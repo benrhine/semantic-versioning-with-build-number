@@ -23,7 +23,7 @@ jobs:
         os: [ ubuntu-latest ]
         java-version: [ "17" ]                        # ONLY TAKES MAJOR VERSION
         jdk-publisher: [ "corretto" ]
-        gradle-version: [ "7.6" ] # Do not work with java 19 - "7.4", "7.4.1", "7.5",
+        gradle-version: [ "7.5.1" ] # Do not work with java 19 - "7.4", "7.4.1", "7.5",
       fail-fast: false
     uses: ./.github/workflows/setup-gradle-environment.yml        # Starting with the ./. means it is a local reusable workflow
     with:
