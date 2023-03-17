@@ -4,7 +4,7 @@ This plugin is designed to replace any and all operations performed on a project
 as I wanted something more reliable and portable than just copy/pasted tasks in a `build.gradle`. I have tried a number 
 of the other similar plugins over the years but none of them were ever exactly what I wanted or worked the way I wanted
 to use them. There was always something that was missing. With that said ... introducing ... drum roll please ...
-the `semantic-versioning-with-build-number` plugin.
+the `semantic-versioning-with-build-number` plugin. To see my release blog post take a look [here](https://benrhine.com/blog/semantic-versioning-with-build-number/).
 
 ### Why would I want this?
 By using this plugin you are able to add items to your build script such as updating your version number programmatically.
@@ -59,6 +59,11 @@ duly informed on how this plugin works operationally.*
 
 ## How to install
 - Declare it in the `plugin` block of gradle like any other plugin.
+```groovy
+plugins {
+    id 'com.benrhine.semantic-versioning-with-build-number' version '0.0.1'
+}
+```
 - Add the following properties to your `gradle.properties` file.
 ```properties
 major=0
@@ -68,6 +73,25 @@ buildNumber=0
 artifact-type=LOCAL
 remote-build=false
 include-release-tag=false
+```
+### Legacy Install
+Or if you are manually building from source.
+```groovy
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.benrhine:semantic-versioning-with-build-number:0.0.1'
+    }
+}
+
+plugins {
+  
+}
+
+apply plugin: 'com.benrhine.semantic-versioning-with-build-number'
 ```
 Note: These properties are required for the plugin to work correctly. If do not set these properties you will get error(s)
 similar to the following.
