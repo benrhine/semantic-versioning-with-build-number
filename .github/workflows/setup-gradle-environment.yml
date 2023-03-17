@@ -32,12 +32,28 @@ jobs:
         shell: bash
 
     steps:
-      - uses: actions/checkout@v3                         # Checkout is required for local action
-      - name: Configure Java and Gradle Version           # Apply a human-readable name
-        id: config-java-gradle                            # Apply easy to reference id
-        uses: ./.github/workflows/actions/setup-env       # Path reference to local action
-        with:                                             # Pass in versions for testing
-          os: ${{ inputs.os }}
+      - uses: actions/checkout@v3
+      - name: Set Gradle Version
+        shell: bash
+        run: ./gradlew wrapper --gradle-version=${{ inputs.gradle-version }}
+      - name: Verify Gradle Version Set
+        shell: bash
+        run: ./gradlew -v
+      - uses: gradle/wrapper-validation-action@v1
+      - name: Set up JDK ${{ inputs.java-version }}
+        uses: actions/setup-java@v3
+        with:
           java-version: ${{ inputs.java-version }}
-          jdk-publisher: ${{ inputs.jdk-publisher }}
-          gradle-version: ${{ inputs.gradle-version }}
+          distribution: ${{ inputs.jdk-publisher }}         # List of supported jvms https://github.com/actions/setup-java
+          server-id: github                                 # Value of the distributionManagement/repository/id field of the pom.xml
+          settings-path: ${{ github.workspace }}            # location for the settings.xml file
+          #cache: gradle - this causes problems on github build
+#      - uses: actions/checkout@v3                         # Checkout is required for local action
+#      - name: Configure Java and Gradle Version           # Apply a human-readable name
+#        id: config-java-gradle                            # Apply easy to reference id
+#        uses: ./.github/workflows/actions/setup-env       # Path reference to local action
+#        with:                                             # Pass in versions for testing
+#          os: ${{ inputs.os }}
+#          java-version: ${{ inputs.java-version }}
+#          jdk-publisher: ${{ inputs.jdk-publisher }}
+#          gradle-version: ${{ inputs.gradle-version }}
