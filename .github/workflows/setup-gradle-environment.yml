@@ -1,0 +1,43 @@
+name: Environment Setup
+
+on:                                                       # Called from the ci.yml
+  workflow_call:
+    inputs:
+      os:
+        description: 'OS'
+        type: string
+        required: true
+      java-version:
+        description: 'Java version'
+        type: string
+        required: true
+      jdk-publisher:
+        description: 'JDK Publisher'
+        type: string
+        required: true
+      gradle-version:
+        description: 'Gradle version'
+        type: string
+        required: true
+
+# This file is not allowed to be manually run as there is no purpose
+
+jobs:
+  environment-setup:
+    name: Environment Setup
+    runs-on: ${{ inputs.os }}
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - uses: actions/checkout@v3                         # Checkout is required for local action
+      - name: Configure Java and Gradle Version           # Apply a human-readable name
+        id: config-java-gradle                            # Apply easy to reference id
+        uses: ./.github/workflows/actions/setup-env       # Path reference to local action
+        with:                                             # Pass in versions for testing
+          os: ${{ inputs.os }}
+          java-version: ${{ inputs.java-version }}
+          jdk-publisher: ${{ inputs.jdk-publisher }}
+          gradle-version: ${{ inputs.gradle-version }}

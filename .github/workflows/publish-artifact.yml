@@ -1,0 +1,97 @@
+name: Publish Artifact
+
+on:                                                       # Runs on the completion of ci.yml
+  workflow_run:
+    workflows: [ 'Full CI Build']
+    types:
+      - completed
+    inputs:
+      os:
+        description: 'OS'
+        type: string
+        required: true
+        default: 'ubuntu-latest'
+      java-version:
+        description: 'Java version'
+        type: string
+        required: true
+        default: '17'
+      jdk-publisher:
+        description: 'JDK Publisher'
+        type: string
+        required: true
+        default: 'corretto'
+      gradle-version:
+        description: 'Gradle version'
+        type: string
+        required: true
+        default: '7.6.1'
+
+jobs:
+  on-success-publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v3                         # Checkout is required for local action
+      - name: Configure Java and Gradle Version           # Apply a human-readable name
+        id: config-java-gradle                            # Apply easy to reference id
+        uses: ./.github/workflows/actions/setup-env       # Path reference to local action
+        with:                                             # Pass in versions for testing
+          os: 'ubuntu-latest'
+          java-version: '17'
+          jdk-publisher: 'corretto'
+          gradle-version: '7.6.1'
+
+      - name: Save application version for Slack Alert    # Collect the new version number
+        run: |
+          echo "app_version=$(./gradlew printVersion -Pci=true -Psnapshot=true | tail -n 4 | head -n 1 )" >> $GITHUB_ENV
+        env: # These must be passed in, in every step
+          BUILD_RUN_ID: ${{ github.run_id }}
+          BUILD_RUN_NUMBER: ${{ github.run_number }}
+          BUILD_RUN_ATTEMPT: ${{ github.run_attempt }}
+
+      - name: Check that the app version was set          # Print new version number to build for reference
+        run: |
+          echo "${{ env.app_version }}"
+
+      # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
+      # the publishing section of your build.gradle
+      - name: Publish to GitHub Packages                  # Publish new artifact with updated version number
+        run: ./gradlew publish -Pci=true -Psnapshot=true
+        env: # These must be passed in, in every step
+          BUILD_RUN_ID: ${{ github.run_id }}
+          BUILD_RUN_NUMBER: ${{ github.run_number }}
+          BUILD_RUN_ATTEMPT: ${{ github.run_attempt }}
+          GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
+          # I don't understand why the default token is not sufficient
+          GITHUB_TOKEN: ${{ secrets.VCS_PERSONAL_TOKEN }}
+
+      - name: Slack Notification                          # Alert new version has been published
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          #        SLACK_CHANNEL: general
+          SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
+          SLACK_ICON: https://github.com/rtCamp.png?size=48
+          SLACK_MESSAGE: You may now include | com.benrhine:semantic-versioning-with-build-number:${{ env.app_version }}
+          SLACK_TITLE: New ARTIFACT available
+          SLACK_USERNAME: RhineConsulting
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+  on-failure-alert:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - run: echo 'The triggering workflow failed'
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          #        SLACK_CHANNEL: general
+          SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
+          SLACK_ICON: https://github.com/rtCamp.png?size=48
+          SLACK_MESSAGE: Failed to build | com.benrhine:semantic-versioning-with-build-number:${{ env.app_version }}
+          SLACK_TITLE: FAILED TO BUILD ARTIFACT
+          SLACK_USERNAME: RhineConsulting
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

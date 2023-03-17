@@ -1,0 +1,107 @@
+name: Unit Test & Upload Coverage
+
+on:                                         # Called from the ci.yml
+  workflow_call:                            # Allows file to be triggered from another workflow
+    inputs:
+      os:
+        description: 'OS'
+        type: string
+        required: true
+      java-version:
+        description: 'Java version'
+        type: string
+        required: true
+      jdk-publisher:
+        description: 'JDK Publisher'
+        type: string
+        required: true
+      gradle-version:
+        description: 'Gradle version'
+        type: string
+        required: true
+
+  workflow_dispatch:                        # Allows file to be triggered manually from the repository
+    inputs:
+      os:
+        description: 'OS'
+        type: choice
+        options:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+        required: false
+        default: 'ubuntu-latest'
+      java-version:
+        description: 'Java version'
+        type: choice
+        options:
+          - '17'
+          - '17.0.5'
+          - '17.0.6'
+          - '19'
+          - '19.0.1'
+          - '19.0.2'
+        required: false
+        default: '17'
+      jdk-publisher:
+        description: 'JDK Publisher'
+        type: choice
+        options:
+          - 'temurin'
+          - 'zulu'
+          - 'adopt'
+          - 'adopt-openj9'
+          - 'liberica'
+          - 'microsoft'
+          - 'corretto'
+          - 'oracle'
+        required: false
+        default: 'corretto'
+      gradle-version:
+        description: 'Gradle version'
+        type: choice
+        options:
+          - '7.4'
+          - "7.4.1"
+          - '7.5'
+          - '7.5.1'
+          - '7.6'
+          - '7.6.1'
+          - '8.0'
+          - '8.0.1'
+          - '8.0.2'
+        required: false
+        default: '7.6'
+
+jobs:
+  unit-tests:
+    runs-on: ${{ inputs.os }}
+    timeout-minutes: 15
+    env:
+      # on MAC OS, we need to set this environment variable
+      # to fix problems with the fork() calls (see this thread
+      # for more information: http://sealiesoftware.com/blog/archive/2017/6/5/Objective-C_and_fork_in_macOS_1013.html)
+      OBJC_DISABLE_INITIALIZE_FORK_SAFETY: "YES"
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - uses: actions/checkout@v3                         # Checkout is required for local action
+      - name: Configure Java and Gradle Version           # Apply a human-readable name
+        id: config-java-gradle                            # Apply easy to reference id
+        uses: ./.github/workflows/actions/setup-env       # Path reference to local action
+        with:                                             # Pass in versions for testing
+          os: ${{ inputs.os }}
+          java-version: ${{ inputs.java-version }}
+          jdk-publisher: ${{ inputs.jdk-publisher }}
+          gradle-version: ${{ inputs.gradle-version }}
+
+      - name: Unit Test with Gradle                       # Unit test library
+        run: ./gradlew test
+
+      - name: Archive unit test report                    # Upload the test report
+        uses: actions/upload-artifact@v3
+        with:
+          name: Unit Test report
+          path: build/unitJacoco.zip
