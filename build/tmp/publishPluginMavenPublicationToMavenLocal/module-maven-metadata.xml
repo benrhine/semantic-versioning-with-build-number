@@ -3,12 +3,12 @@
   <groupId>com.benrhine</groupId>
   <artifactId>semantic-versioning-with-build-number</artifactId>
   <versioning>
-    <latest>0.0.1</latest>
-    <release>0.0.1</release>
+    <latest>0.0.0-LOCAL</latest>
+    <release>0.0.0-LOCAL</release>
     <versions>
-      <version>0.0.1-SNAPSHOT</version>
       <version>0.0.1</version>
+      <version>0.0.0-LOCAL</version>
     </versions>
-    <lastUpdated>20230317173452</lastUpdated>
+    <lastUpdated>20230317182301</lastUpdated>
   </versioning>
 </metadata>

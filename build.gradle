@@ -15,6 +15,7 @@ plugins {
 group 'com.benrhine'
 version '0.0.1'
 
+
 gradlePlugin {
     website = 'https://benrhine.com'
     vcsUrl = 'https://github.com/benrhine/semantic-versioning-with-build-number'

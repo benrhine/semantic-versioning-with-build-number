@@ -6,7 +6,23 @@ of the other similar plugins over the years but none of them were ever exactly w
 to use them. There was always something that was missing. With that said ... introducing ... drum roll please ...
 the `semantic-versioning-with-build-number` plugin.
 
-*IMPORTANT!!! I wouldn't exactly call this a warning, but I don't want anyone caught off guard about how certain functionality
+### Why would I want this?
+By using this plugin you are able to add items to your build script such as updating your version number programmatically.
+For example, you could structure your `build.gradle` file such that if you are running a CI build in a certain environment
+that you want any artifacts to be generated with the `BETA` artifact type.
+```groovy
+versionConfig {
+  ...
+  if (environment == "UAT") {
+    artifactType = "BETA"
+  }
+  ...
+}
+```
+You could also use it if you are practicing SAFE Agile to match the version to PI's and Increments of work (see [below](#safe-agile)).
+
+#### IMPORTANT!!!
+*I wouldn't exactly call this a warning, but I don't want anyone caught off guard about how certain functionality
 in this plugin operates. When this plugin updates the project version it is fully regenerating whatever property file
 it is operating on. I realize that to some if they do not understand this up front that it might cause some concern. In
 an attempt to mitigate this I have implemented it in such a way that the order of the properties file is maintained and
@@ -24,6 +40,9 @@ duly informed on how this plugin works operationally.*
     - [Increment the patch portion of the version](#increment-the-patch-portion-of-the-version)
     - [Increment the minor portion of the version](#increment-the-minor-portion-of-the-version)
     - [Increment the major portion of the version](#increment-the-major-portion-of-the-version)
+    - [Decrement the patch portion of the version](#decrement-the-patch-portion-of-the-version)
+    - [Decrement the minor portion of the version](#decrement-the-minor-portion-of-the-version)
+    - [Decrement the major portion of the version](#decrement-the-major-portion-of-the-version)
 - [Configuration](#configuration)
   - [Default](#default)
   - [Using an alternate properties file](#using-an-alternate-properties-file)
@@ -75,6 +94,8 @@ The default version will be whatever was set in the `gradle.properties` (see abo
 *Note: I normally set it to `0.0.0-LOCAL` to start.*
 
 ### Available Tasks
+This plugin includes the ability to print the current version at any point of your development process as well as increment
+or decrement major, minor, or patch programmatically.
 
 #### Print the current version
 ```shell
@@ -94,6 +115,21 @@ The default version will be whatever was set in the `gradle.properties` (see abo
 #### Increment the major portion of the version
 ```shell
 ./gradlew incrementMajorVersion
+```
+
+#### Decrement the patch portion of the version
+```shell
+./gradlew decrementPatchVersion
+```
+
+#### Decrement the minor portion of the version
+```shell
+./gradlew decrementMinorVersion
+```
+
+#### Decrement the major portion of the version
+```shell
+./gradlew decrementMajorVersion
 ```
 
 ## Configuration
@@ -182,10 +218,11 @@ finally if both `includeReleaseTag` or `includeBuildNumber` is set to true the r
 ## Future Ideas
 I believe there is a duplicate load of the local properties. I have tried to fix this but so far when I try to make these
 changes the properties fail to update correctly. I believe that the initial property load can happen a single time in the
-main class and do not need to be redeclared in the task files.
+main class and do not need to be redeclared in the task files. While I found reference on how to convert between properties
+and map [here](https://www.rgagnon.com/javadetails/java-convert-map-to-properties.html), the issue with trying to do this
+is there are other items in gradle properties context that you would not want written back to the properties file.
 
 Increment value and push to git
-decrement value - dont know why you would wnat htis but
 
 ## SAFE Agile
 Semantic versioning lends itself to the SAFE Agile practice. When operating under SAFE methodology you loosely plan a PI

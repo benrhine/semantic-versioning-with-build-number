@@ -12,7 +12,7 @@ package com.benrhine.plugins.v1;
  *     customVersionPropertiesPath = "$projectDir/src/main/resources/version.properties"
  * }
  * ------------------------------------------------------------------------------------------------------------------ */
-public final class SemanticVersioningWithBuildNumberPluginExtension {
+public class SemanticVersioningWithBuildNumberPluginExtension {
 
     private boolean remoteBuild = false;
     private boolean includeReleaseTag = false;
