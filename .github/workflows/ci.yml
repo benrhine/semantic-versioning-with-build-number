@@ -34,7 +34,6 @@ jobs:
           distribution: 'corretto' # List of supported jvms https://github.com/actions/setup-java
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
-          cache: gradle
 
 #jobs:
 #  ubuntu-setup-gradle-environment:
