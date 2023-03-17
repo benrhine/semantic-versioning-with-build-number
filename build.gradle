@@ -3,9 +3,9 @@ buildscript {
         mavenLocal()
         mavenCentral()
     }
-    dependencies {
-        classpath 'com.benrhine:semantic-versioning-with-build-number:0.0.1'
-    }
+//    dependencies {
+//        classpath 'com.benrhine:semantic-versioning-with-build-number:0.0.1-SNAPSHOT'
+//    }
 }
 
 plugins {
@@ -13,7 +13,7 @@ plugins {
 }
 
 group 'com.benrhine'
-version '0.0.1'
+version '0.0.1-SNAPSHOT'
 
 
 gradlePlugin {
