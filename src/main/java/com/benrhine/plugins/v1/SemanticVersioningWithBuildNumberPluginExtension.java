@@ -2,7 +2,7 @@ package com.benrhine.plugins.v1;
 
 /** --------------------------------------------------------------------------------------------------------------------
  * SemanticVersioningWithBuildNumberPluginExtension: Extension class in support of plugin configuration.
- *
+ * <p>
  * versionConfig {
  *     remoteBuild = true
  *     ciBuildNumberEnvVarName = "BUILD_RUN_NUMBER" //BITBUCKET_BUILD_NUMBER
@@ -12,7 +12,7 @@ package com.benrhine.plugins.v1;
  *     customVersionPropertiesPath = "$projectDir/src/main/resources/version.properties"
  * }
  * ------------------------------------------------------------------------------------------------------------------ */
-public class SemanticVersioningWithBuildNumberPluginExtension {
+public final class SemanticVersioningWithBuildNumberPluginExtension {
 
     private boolean remoteBuild = false;
     private boolean includeReleaseTag = false;

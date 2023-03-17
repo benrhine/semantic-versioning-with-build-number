@@ -28,7 +28,7 @@ import org.gradle.api.Project;
  * SemanticVersioningWithBuildNumberPlugin: Plugin that supports semantic versioning with a build number. Can be used
  * strictly for project versioning or in conjunction with safe agile to match versions to pi and increments.
  * ------------------------------------------------------------------------------------------------------------------ */
-public class SemanticVersioningWithBuildNumberPlugin implements Plugin<Project> {
+public final class SemanticVersioningWithBuildNumberPlugin implements Plugin<Project> {
     static final String VERSION_CONFIG = "versionConfig";
     static final String PRINT_VERSION = "printVersion";
     static final String INCREMENT_MAJOR_VERSION = "incrementMajorVersion";

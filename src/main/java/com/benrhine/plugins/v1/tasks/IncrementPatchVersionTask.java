@@ -15,7 +15,7 @@ import org.gradle.api.tasks.TaskAction;
 /**  --------------------------------------------------------------------------------------------------------------------
  * PatchVersion: Increment the patch version via task.
  * ------------------------------------------------------------------------------------------------------------------ */
-public class IncrementPatchVersionTask extends DefaultTask {
+public final class IncrementPatchVersionTask extends DefaultTask {
 
     /**
      * incrementPatchVersion: Task that executes incrementing the patch version.

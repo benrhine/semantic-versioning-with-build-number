@@ -16,7 +16,7 @@ import java.util.Set;
  * - https://stackoverflow.com/questions/3619796/how-to-read-a-properties-file-in-java-in-the-original-order
  * ------------------------------------------------------------------------------------------------------------------ */
 @SuppressWarnings({"unchecked"})
-public class OrderedProperties extends Properties {
+public final class OrderedProperties extends Properties {
     @Serial
     private static final long serialVersionUID = 1L;
 
