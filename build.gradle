@@ -12,14 +12,15 @@ plugins {
     id 'com.gradle.plugin-publish' version '1.1.0'
 }
 
+group 'com.benrhine'
+version '0.0.1-SNAPSHOT'
+
 apply plugin: 'com.benrhine.semantic-versioning-with-build-number'
 
-group 'com.benrhine'
-//version '0.0.1-SNAPSHOT'
 
 gradlePlugin {
-//    website = 'https://benrhine.com'
-//    vcsUrl = 'https://github.com/benrhine/semantic-versioning-with-build-number'
+    website = 'https://benrhine.com'
+    vcsUrl = 'https://github.com/benrhine/semantic-versioning-with-build-number'
     plugins {
         semanticVersioningWithBuildNumberPlugin {
             id = 'com.benrhine.semantic-versioning-with-build-number'
@@ -45,11 +46,11 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
-versionConfig {
-    remoteBuild = true
-    ciBuildNumberEnvVarName = "BUILD_RUN_NUMBER" //BITBUCKET_BUILD_NUMBER
-    artifactType = "SNAPSHOT"
-    includeReleaseTag = true
-    includeBuildNumber = true
-    customVersionPropertiesPath = "$projectDir/src/main/resources/version.properties"
-}
+//versionConfig {
+//    remoteBuild = true
+//    ciBuildNumberEnvVarName = "BUILD_RUN_NUMBER" //BITBUCKET_BUILD_NUMBER
+//    artifactType = "SNAPSHOT"
+//    includeReleaseTag = true
+//    includeBuildNumber = true
+//    customVersionPropertiesPath = "$projectDir/src/main/resources/version.properties"
+//}

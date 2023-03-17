@@ -3,14 +3,14 @@
   "component": {
     "group": "com.benrhine",
     "module": "semantic-versioning-with-build-number",
-    "version": "0.0.0-LOCAL",
+    "version": "0.0.1-SNAPSHOT",
     "attributes": {
-      "org.gradle.status": "release"
+      "org.gradle.status": "integration"
     }
   },
   "createdBy": {
     "gradle": {
-      "version": "7.5.1"
+      "version": "7.6"
     }
   },
   "variants": [
@@ -25,13 +25,13 @@
       },
       "files": [
         {
-          "name": "semantic-versioning-with-build-number-0.0.0-LOCAL.jar",
-          "url": "semantic-versioning-with-build-number-0.0.0-LOCAL.jar",
-          "size": 17868,
-          "sha512": "7e1535f1e9151308cb5f933ea67da479b583dc841ffe494a287a3bcd8b37b9369442ee9bc0ed302b7f5fe5747937c390aa043c98b5a6a79fc92d0df48a387e86",
-          "sha256": "36bfc00b7357a5a6a35733fe8decac3923fbed4dd60791c1dbe0d45adff1b254",
-          "sha1": "fe5b5d63a6bebfb2c6eeacd8d78fb773abaf2c25",
-          "md5": "10ff3b6bb3a9436cc62404499aeb5a08"
+          "name": "semantic-versioning-with-build-number-0.0.1-SNAPSHOT.jar",
+          "url": "semantic-versioning-with-build-number-0.0.1-SNAPSHOT.jar",
+          "size": 17867,
+          "sha512": "c41638592412cee1b2823c5fcc064b0ddee440dfa6c432611844456afc59ee0cb7ec06a81d749d2304066ff006271daf2dca9ed573a88fe3cf5a869956c60938",
+          "sha256": "c45002330761eb96164eb5b820e861efa87e4285a297292ece4447c2ee84a773",
+          "sha1": "d2bc61bee7911837fc7703a00e04fa35658214f8",
+          "md5": "2b1964608b7556df8f2ac3a4ba9740f4"
         }
       ]
     },
@@ -46,13 +46,53 @@
       },
       "files": [
         {
-          "name": "semantic-versioning-with-build-number-0.0.0-LOCAL.jar",
-          "url": "semantic-versioning-with-build-number-0.0.0-LOCAL.jar",
-          "size": 17868,
-          "sha512": "7e1535f1e9151308cb5f933ea67da479b583dc841ffe494a287a3bcd8b37b9369442ee9bc0ed302b7f5fe5747937c390aa043c98b5a6a79fc92d0df48a387e86",
-          "sha256": "36bfc00b7357a5a6a35733fe8decac3923fbed4dd60791c1dbe0d45adff1b254",
-          "sha1": "fe5b5d63a6bebfb2c6eeacd8d78fb773abaf2c25",
-          "md5": "10ff3b6bb3a9436cc62404499aeb5a08"
+          "name": "semantic-versioning-with-build-number-0.0.1-SNAPSHOT.jar",
+          "url": "semantic-versioning-with-build-number-0.0.1-SNAPSHOT.jar",
+          "size": 17867,
+          "sha512": "c41638592412cee1b2823c5fcc064b0ddee440dfa6c432611844456afc59ee0cb7ec06a81d749d2304066ff006271daf2dca9ed573a88fe3cf5a869956c60938",
+          "sha256": "c45002330761eb96164eb5b820e861efa87e4285a297292ece4447c2ee84a773",
+          "sha1": "d2bc61bee7911837fc7703a00e04fa35658214f8",
+          "md5": "2b1964608b7556df8f2ac3a4ba9740f4"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "semantic-versioning-with-build-number-0.0.1-SNAPSHOT-javadoc.jar",
+          "url": "semantic-versioning-with-build-number-0.0.1-SNAPSHOT-javadoc.jar",
+          "size": 124252,
+          "sha512": "4ab0e166b66c6152adcba9fd533af1f4ebfd18d255f317e37e61ef15c16c1a60682e547458f567d8294446e70fa77c4c5d578f5c61235762edcf32b6b4664ea1",
+          "sha256": "6c0d915a445db808d115c11bdbe75902376b92b7d1c969055b9305931bafa63f",
+          "sha1": "caa53ddca7b51f5e9e43b1cc6a3cef8f5e8929ca",
+          "md5": "1c952e6d448e4373d347393ebfb89db7"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "semantic-versioning-with-build-number-0.0.1-SNAPSHOT-sources.jar",
+          "url": "semantic-versioning-with-build-number-0.0.1-SNAPSHOT-sources.jar",
+          "size": 11789,
+          "sha512": "851d9bcddac2e7163ddfde3948c418964c38f7d38d00259dbc81a7d5aa093008dbe7c63df9bf17e9618e34210d92515687eba5cbfd97da7d303a35bacfabbdfa",
+          "sha256": "7f643f754b59c7f5e7bdc2f3d7de51686000874f247ac8a0b87201942d82aaa5",
+          "sha1": "437d232a11389ff16ebb942cf3027ede713c20c4",
+          "md5": "b02a84520ea784a6d698c3413c2b6e09"
         }
       ]
     }

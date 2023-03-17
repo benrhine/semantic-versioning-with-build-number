@@ -3,13 +3,15 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.benrhine.semantic-versioning-with-build-number</groupId>
   <artifactId>com.benrhine.semantic-versioning-with-build-number.gradle.plugin</artifactId>
-  <version>0.0.0-LOCAL</version>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
+  <name>Semantic versioning with build number</name>
+  <description>Flexible semantic versioning with the ability to include a build number of use for SAFE Agile</description>
   <dependencies>
     <dependency>
       <groupId>com.benrhine</groupId>
       <artifactId>semantic-versioning-with-build-number</artifactId>
-      <version>0.0.0-LOCAL</version>
+      <version>0.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>

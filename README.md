@@ -11,9 +11,32 @@ in this plugin operates. When this plugin updates the project version it is full
 it is operating on. I realize that to some if they do not understand this up front that it might cause some concern. In
 an attempt to mitigate this I have implemented it in such a way that the order of the properties file is maintained and
 the only visible changes to the end user is updated versioning properties and a timestamp at the top of the file explaining
-that the file has been regenerated. I personally have worked on this part extensively as make heavy use of property files
+that the file has been regenerated. I personally have worked on this part extensively as I make heavy use of property files
 and wanted to ensure that this would not cause me problems. I have not found this to be an issue but consider yourself
 duly informed on how this plugin works operationally.
+
+- [How to install](#how-to-install)
+- [What does it do?](#what-does-it-do)
+      - [Print the current version](#print-the-current-version)
+  - [What is the default version?](#what-is-the-default-version)
+  - [Available Tasks](#available-tasks)
+    - [Print the current version](#print-the-current-version-1)
+    - [Increment the patch portion of the version](#increment-the-patch-portion-of-the-version)
+    - [Increment the minor portion of the version](#increment-the-minor-portion-of-the-version)
+    - [Increment the major portion of the version](#increment-the-major-portion-of-the-version)
+- [Configuration](#configuration)
+  - [Default](#default)
+  - [Using an alternate properties file](#using-an-alternate-properties-file)
+    - [version.properties](#versionproperties)
+  - [Setting artifact type](#setting-artifact-type)
+    - [Supported artifact types](#supported-artifact-types)
+  - [CI/CD Builds](#cicd-builds)
+    - [remoteBuild (Or how to include your build number)](#remotebuild--or-how-to-include-your-build-number-)
+    - [ciBuildNumberEnvVarName (Or how to get the build number from your provider)](#cibuildnumberenvvarname--or-how-to-get-the-build-number-from-your-provider-)
+    - [includeReleaseTag && includeBuildNumber](#includereleasetag--includebuildnumber)
+- [Future Ideas](#future-ideas)
+- [SAFE Agile](#safe-agile)
+- [Development](#development)
 
 ## How to install
 - Declare it in the `plugin` block of gradle like any other plugin.
@@ -49,7 +72,7 @@ will mess up the plugins function.**
 
 ### What is the default version?
 The default version will be whatever was set in the `gradle.properties` (see above [reference](#how-to-install)). 
-*Note: I normally set it to `0.0.0-LOCAL` to start.
+*Note: I normally set it to `0.0.0-LOCAL` to start.*
 
 ### Available Tasks
 
@@ -164,9 +187,84 @@ main class and do not need to be redeclared in the task files.
 Increment value and push to git
 decrement value - dont know why you would wnat htis but
 
-how to use for smart agile
+## SAFE Agile
+Semantic versioning lends itself to the SAFE Agile practice. When operating under SAFE methodology you loosely plan a PI
+at a time (i.e. you plan a quarter at a time) then have standard sprints within that PI which are known as iterations.
+Understanding this allows you to use semantic versioning to match your agile cycle. See the following
+- Major version = PI version
+- Minor version = PI Sprint version
+- Patch version = PI Daily Version
+- Build Number
+OR
+- Major version = Release Year
+- Minor version = PI version
+- Patch version = PI Sprint version
+- Build Number
+If you use semantic versioning as above it will allow you to closely tie your work to your process.
+
+## Development
+When working on this plugin it is possible to self reference the plugin within the `build.gradle` file by updating to the
+following. I have removed the self-referencing portions for publishing cleanliness
+
+```groovy
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.benrhine:semantic-versioning-with-build-number:0.0.1-SNAPSHOT'
+    }
+}
+
+plugins {
+    id 'com.gradle.plugin-publish' version '1.1.0'
+}
+
+group 'com.benrhine'
+version '0.0.1-SNAPSHOT'
+
+apply plugin: 'com.benrhine.semantic-versioning-with-build-number'
 
 
+gradlePlugin {
+    website = 'https://benrhine.com'
+    vcsUrl = 'https://github.com/benrhine/semantic-versioning-with-build-number'
+    plugins {
+        semanticVersioningWithBuildNumberPlugin {
+            id = 'com.benrhine.semantic-versioning-with-build-number'
+            displayName = 'Semantic versioning with build number'
+            description = 'Flexible semantic versioning with the ability to include a build number of use for SAFE Agile'
+            //tags.set(['semantic', 'version', 'build', 'number', 'build number', 'safe', 'agile', 'safe agile'])
+            implementationClass = 'com.benrhine.plugins.v1.SemanticVersioningWithBuildNumberPlugin'
+        }
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+//versionConfig {
+//    remoteBuild = true
+//    ciBuildNumberEnvVarName = "BUILD_RUN_NUMBER" //BITBUCKET_BUILD_NUMBER
+//    artifactType = "SNAPSHOT"
+//    includeReleaseTag = true
+//    includeBuildNumber = true
+//    customVersionPropertiesPath = "$projectDir/src/main/resources/version.properties"
+//}
+
+```
 
 
 
