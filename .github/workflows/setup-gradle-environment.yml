@@ -33,12 +33,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Set Gradle Version
-        shell: bash
-        run: ./gradlew wrapper --gradle-version=${{ inputs.gradle-version }}
-      - name: Verify Gradle Version Set
-        shell: bash
-        run: ./gradlew -v
+#      - name: Set Gradle Version
+#        shell: bash
+#        run: ./gradlew wrapper --gradle-version=${{ inputs.gradle-version }}
+#      - name: Verify Gradle Version Set
+#        shell: bash
+#        run: ./gradlew -v
       - uses: gradle/wrapper-validation-action@v1
       - name: Set up JDK ${{ inputs.java-version }}
         uses: actions/setup-java@v3
