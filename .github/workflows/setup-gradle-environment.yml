@@ -32,22 +32,12 @@ jobs:
         shell: bash
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: gradle/wrapper-validation-action@v1
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'corretto' # List of supported jvms https://github.com/actions/setup-java
-          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-          settings-path: ${{ github.workspace }} # location for the settings.xml file
-          cache: gradle
-#      - uses: actions/checkout@v3                         # Checkout is required for local action
-#      - name: Configure Java and Gradle Version           # Apply a human-readable name
-#        id: config-java-gradle                            # Apply easy to reference id
-#        uses: ./.github/workflows/actions/setup-env       # Path reference to local action
-#        with:                                             # Pass in versions for testing
-#          os: ${{ inputs.os }}
-#          java-version: ${{ inputs.java-version }}
-#          jdk-publisher: ${{ inputs.jdk-publisher }}
-#          gradle-version: ${{ inputs.gradle-version }}
+      - uses: actions/checkout@v3                         # Checkout is required for local action
+      - name: Configure Java and Gradle Version           # Apply a human-readable name
+        id: config-java-gradle                            # Apply easy to reference id
+        uses: ./.github/workflows/actions/setup-env       # Path reference to local action
+        with:                                             # Pass in versions for testing
+          os: ${{ inputs.os }}
+          java-version: ${{ inputs.java-version }}
+          jdk-publisher: ${{ inputs.jdk-publisher }}
+          gradle-version: ${{ inputs.gradle-version }}
