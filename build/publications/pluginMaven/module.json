@@ -3,9 +3,9 @@
   "component": {
     "group": "com.benrhine",
     "module": "semantic-versioning-with-build-number",
-    "version": "0.0.1-SNAPSHOT",
+    "version": "0.0.1",
     "attributes": {
-      "org.gradle.status": "integration"
+      "org.gradle.status": "release"
     }
   },
   "createdBy": {
@@ -25,13 +25,13 @@
       },
       "files": [
         {
-          "name": "semantic-versioning-with-build-number-0.0.1-SNAPSHOT.jar",
-          "url": "semantic-versioning-with-build-number-0.0.1-SNAPSHOT.jar",
-          "size": 17867,
-          "sha512": "c41638592412cee1b2823c5fcc064b0ddee440dfa6c432611844456afc59ee0cb7ec06a81d749d2304066ff006271daf2dca9ed573a88fe3cf5a869956c60938",
-          "sha256": "c45002330761eb96164eb5b820e861efa87e4285a297292ece4447c2ee84a773",
-          "sha1": "d2bc61bee7911837fc7703a00e04fa35658214f8",
-          "md5": "2b1964608b7556df8f2ac3a4ba9740f4"
+          "name": "semantic-versioning-with-build-number-0.0.1.jar",
+          "url": "semantic-versioning-with-build-number-0.0.1.jar",
+          "size": 15440,
+          "sha512": "4317fd8999bb71d06f8af7e5e43f57754f5ac28381c427284752c14dad6581abfb9bade25e68191ee9e7f385118b2bb371d7f116dbbb1982730bec6b323738f7",
+          "sha256": "4b62376bb3a374b2bd894b938c94f5a51710a2d2e2d6d41f58720e8f9301b632",
+          "sha1": "9dcb66e52ae2634975bceb3f93ab26560137778e",
+          "md5": "200f86d9ec7f7246f2a4b93316ffd6f9"
         }
       ]
     },
@@ -46,13 +46,13 @@
       },
       "files": [
         {
-          "name": "semantic-versioning-with-build-number-0.0.1-SNAPSHOT.jar",
-          "url": "semantic-versioning-with-build-number-0.0.1-SNAPSHOT.jar",
-          "size": 17867,
-          "sha512": "c41638592412cee1b2823c5fcc064b0ddee440dfa6c432611844456afc59ee0cb7ec06a81d749d2304066ff006271daf2dca9ed573a88fe3cf5a869956c60938",
-          "sha256": "c45002330761eb96164eb5b820e861efa87e4285a297292ece4447c2ee84a773",
-          "sha1": "d2bc61bee7911837fc7703a00e04fa35658214f8",
-          "md5": "2b1964608b7556df8f2ac3a4ba9740f4"
+          "name": "semantic-versioning-with-build-number-0.0.1.jar",
+          "url": "semantic-versioning-with-build-number-0.0.1.jar",
+          "size": 15440,
+          "sha512": "4317fd8999bb71d06f8af7e5e43f57754f5ac28381c427284752c14dad6581abfb9bade25e68191ee9e7f385118b2bb371d7f116dbbb1982730bec6b323738f7",
+          "sha256": "4b62376bb3a374b2bd894b938c94f5a51710a2d2e2d6d41f58720e8f9301b632",
+          "sha1": "9dcb66e52ae2634975bceb3f93ab26560137778e",
+          "md5": "200f86d9ec7f7246f2a4b93316ffd6f9"
         }
       ]
     },
@@ -66,13 +66,13 @@
       },
       "files": [
         {
-          "name": "semantic-versioning-with-build-number-0.0.1-SNAPSHOT-javadoc.jar",
-          "url": "semantic-versioning-with-build-number-0.0.1-SNAPSHOT-javadoc.jar",
-          "size": 124252,
-          "sha512": "4ab0e166b66c6152adcba9fd533af1f4ebfd18d255f317e37e61ef15c16c1a60682e547458f567d8294446e70fa77c4c5d578f5c61235762edcf32b6b4664ea1",
-          "sha256": "6c0d915a445db808d115c11bdbe75902376b92b7d1c969055b9305931bafa63f",
-          "sha1": "caa53ddca7b51f5e9e43b1cc6a3cef8f5e8929ca",
-          "md5": "1c952e6d448e4373d347393ebfb89db7"
+          "name": "semantic-versioning-with-build-number-0.0.1-javadoc.jar",
+          "url": "semantic-versioning-with-build-number-0.0.1-javadoc.jar",
+          "size": 118722,
+          "sha512": "d9d26e2f5afb20a1645e5317247c1cd4c45a7322abed2b72657eda5fdec5e197f655a3b40d7e38ef5b169832b31b47ef3680004ca96727226d52437021950d95",
+          "sha256": "61d6ee35b828c8c05a8c88c9eb059791bab247e95cc55ae424e7ad77e80bc4f4",
+          "sha1": "695201782545e5fa316d640ee719a802e577f7d7",
+          "md5": "285fa21a27d210f08cd2039edaf6fd19"
         }
       ]
     },
@@ -86,13 +86,13 @@
       },
       "files": [
         {
-          "name": "semantic-versioning-with-build-number-0.0.1-SNAPSHOT-sources.jar",
-          "url": "semantic-versioning-with-build-number-0.0.1-SNAPSHOT-sources.jar",
-          "size": 11789,
-          "sha512": "851d9bcddac2e7163ddfde3948c418964c38f7d38d00259dbc81a7d5aa093008dbe7c63df9bf17e9618e34210d92515687eba5cbfd97da7d303a35bacfabbdfa",
-          "sha256": "7f643f754b59c7f5e7bdc2f3d7de51686000874f247ac8a0b87201942d82aaa5",
-          "sha1": "437d232a11389ff16ebb942cf3027ede713c20c4",
-          "md5": "b02a84520ea784a6d698c3413c2b6e09"
+          "name": "semantic-versioning-with-build-number-0.0.1-sources.jar",
+          "url": "semantic-versioning-with-build-number-0.0.1-sources.jar",
+          "size": 12715,
+          "sha512": "28abccc46d8d646cdb142a523d993fc564e4a84bc9214b8546489bc0a0d016712cc75a3467ed390a40458f6f21e0357a0e5f0f4c3e06428a936071e0eb6c646b",
+          "sha256": "170cc8b4838a9f981dd60954c1ef4dff89c86334820e418f8d6e4517804fd28d",
+          "sha1": "831498a6cce990b7fbf6374bd9b0e4a5b07a72ec",
+          "md5": "d7b43e20a651679c444b1091ed2f597c"
         }
       ]
     }

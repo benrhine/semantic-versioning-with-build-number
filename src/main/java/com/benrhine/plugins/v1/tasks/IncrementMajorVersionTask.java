@@ -13,10 +13,15 @@ import org.gradle.api.Project;
 import org.gradle.api.tasks.TaskAction;
 
 /**  --------------------------------------------------------------------------------------------------------------------
- * MajorVersion: TODO fill me in.
+ * MajorVersion: Increment the major version via task.
  * ------------------------------------------------------------------------------------------------------------------ */
 public class IncrementMajorVersionTask extends DefaultTask {
 
+    /**
+     * incrementMajorVersion: Task that executes incrementing the major version.
+     *
+     * @throws Exception (optionally)
+     */
     @TaskAction
     public void incrementMajorVersion() throws Exception {
 
@@ -36,7 +41,7 @@ public class IncrementMajorVersionTask extends DefaultTask {
             // `build.gradle` extension block
             writeLocalProperties(project, prop);
             System.out.println(project.getProperties().get("version"));
-        } catch (IOException ex) {
+        } catch (final IOException ex) {
             ex.printStackTrace();
         }
     }

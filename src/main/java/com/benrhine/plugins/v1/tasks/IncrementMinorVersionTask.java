@@ -13,10 +13,15 @@ import org.gradle.api.Project;
 import org.gradle.api.tasks.TaskAction;
 
 /**  --------------------------------------------------------------------------------------------------------------------
- * MinorVersion: TODO fill me in.
+ * MinorVersion: Increment the minor version via task.
  * ------------------------------------------------------------------------------------------------------------------ */
 public class IncrementMinorVersionTask extends DefaultTask {
 
+    /**
+     * incrementMinorVersion: Task that executes incrementing the minor version.
+     *
+     * @throws Exception (optionally)
+     */
     @TaskAction
     public void incrementMinorVersion() throws Exception {
 
@@ -36,7 +41,7 @@ public class IncrementMinorVersionTask extends DefaultTask {
             // `build.gradle` extension block
             writeLocalProperties(project, prop);
             System.out.println(project.getProperties().get("version"));
-        } catch (IOException ex) {
+        } catch (final IOException ex) {
             ex.printStackTrace();
         }
     }

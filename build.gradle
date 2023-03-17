@@ -4,7 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.benrhine:semantic-versioning-with-build-number:0.0.1-SNAPSHOT'
+        classpath 'com.benrhine:semantic-versioning-with-build-number:0.0.1'
     }
 }
 
@@ -13,10 +13,7 @@ plugins {
 }
 
 group 'com.benrhine'
-version '0.0.1-SNAPSHOT'
-
-apply plugin: 'com.benrhine.semantic-versioning-with-build-number'
-
+version '0.0.1'
 
 gradlePlugin {
     website = 'https://benrhine.com'
@@ -26,7 +23,7 @@ gradlePlugin {
             id = 'com.benrhine.semantic-versioning-with-build-number'
             displayName = 'Semantic versioning with build number'
             description = 'Flexible semantic versioning with the ability to include a build number of use for SAFE Agile'
-            //tags.set(['semantic', 'version', 'build', 'number', 'build number', 'safe', 'agile', 'safe agile'])
+            tags.set(['semantic', 'version', 'build', 'number', 'build number', 'safe', 'agile', 'safe agile'])
             implementationClass = 'com.benrhine.plugins.v1.SemanticVersioningWithBuildNumberPlugin'
         }
     }
@@ -45,12 +42,3 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
-
-//versionConfig {
-//    remoteBuild = true
-//    ciBuildNumberEnvVarName = "BUILD_RUN_NUMBER" //BITBUCKET_BUILD_NUMBER
-//    artifactType = "SNAPSHOT"
-//    includeReleaseTag = true
-//    includeBuildNumber = true
-//    customVersionPropertiesPath = "$projectDir/src/main/resources/version.properties"
-//}

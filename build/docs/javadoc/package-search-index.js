@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.benrhine.plugins.v1"},{"l":"com.benrhine.plugins.v1.tasks"},{"l":"com.benrhine.plugins.v1.tasks.base"},{"l":"com.benrhine.plugins.v1.util"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.benrhine.plugins.v1"},{"l":"com.benrhine.plugins.v1.tasks"},{"l":"com.benrhine.plugins.v1.util"}];updateSearchResults();

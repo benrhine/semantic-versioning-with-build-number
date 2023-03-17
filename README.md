@@ -255,14 +255,14 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
-//versionConfig {
-//    remoteBuild = true
-//    ciBuildNumberEnvVarName = "BUILD_RUN_NUMBER" //BITBUCKET_BUILD_NUMBER
-//    artifactType = "SNAPSHOT"
-//    includeReleaseTag = true
-//    includeBuildNumber = true
-//    customVersionPropertiesPath = "$projectDir/src/main/resources/version.properties"
-//}
+versionConfig {
+    remoteBuild = true
+    ciBuildNumberEnvVarName = "BUILD_RUN_NUMBER" //BITBUCKET_BUILD_NUMBER
+    artifactType = "SNAPSHOT"
+    includeReleaseTag = true
+    includeBuildNumber = true
+    customVersionPropertiesPath = "$projectDir/src/main/resources/version.properties"
+}
 
 ```
 

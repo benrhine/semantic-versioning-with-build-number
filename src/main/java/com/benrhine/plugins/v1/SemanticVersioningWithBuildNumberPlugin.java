@@ -21,13 +21,12 @@ import com.benrhine.plugins.v1.tasks.IncrementMinorVersionTask;
 import com.benrhine.plugins.v1.tasks.IncrementPatchVersionTask;
 import com.benrhine.plugins.v1.tasks.PrintVersionTask;
 import groovy.lang.Closure;
-import org.gradle.BuildResult;
-import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 
 /** --------------------------------------------------------------------------------------------------------------------
- * SemanticVersioningWithBuildNumberPlugin: TODO fill me in.
+ * SemanticVersioningWithBuildNumberPlugin: Plugin that supports semantic versioning with a build number. Can be used
+ * strictly for project versioning or in conjunction with safe agile to match versions to pi and increments.
  * ------------------------------------------------------------------------------------------------------------------ */
 public class SemanticVersioningWithBuildNumberPlugin implements Plugin<Project> {
     static final String VERSION_CONFIG = "versionConfig";
@@ -36,6 +35,11 @@ public class SemanticVersioningWithBuildNumberPlugin implements Plugin<Project> 
     static final String INCREMENT_MINOR_VERSION = "incrementMinorVersion";
     static final String INCREMENT_PATCH_VERSION = "incrementPatchVersion";
 
+    /**
+     * apply: Invoke the plugin to be applied on a given project.
+     *
+     * @param project Project
+     */
     @Override
     public void apply(final Project project) {
         // Initialize `build.gradle` extension closure

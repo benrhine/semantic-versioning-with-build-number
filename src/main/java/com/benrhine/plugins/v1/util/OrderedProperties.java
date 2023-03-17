@@ -2,6 +2,7 @@ package com.benrhine.plugins.v1.util;
 
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.io.Serial;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -16,9 +17,13 @@ import java.util.Set;
  * ------------------------------------------------------------------------------------------------------------------ */
 @SuppressWarnings({"unchecked"})
 public class OrderedProperties extends Properties {
+    @Serial
     private static final long serialVersionUID = 1L;
 
-    private Map<Object, Object> linkMap = new LinkedHashMap<>();
+    /**
+     * Holder for properties
+     */
+    private final Map<Object, Object> linkMap = new LinkedHashMap<>();
 
     public void clear() {
         linkMap.clear();

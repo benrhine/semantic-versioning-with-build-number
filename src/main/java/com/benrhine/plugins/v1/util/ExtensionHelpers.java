@@ -10,10 +10,17 @@ import com.benrhine.plugins.v1.SemanticVersioningWithBuildNumberPluginExtension;
 import org.gradle.api.Project;
 
 /** --------------------------------------------------------------------------------------------------------------------
- * ExtensionHelpers: TODO fill me in.
+ * ExtensionHelpers: Re-usable helper functions.
  * ------------------------------------------------------------------------------------------------------------------ */
 public final class ExtensionHelpers {
 
+    /**
+     * getLocalProperties:
+     *
+     * @param project Project
+     * @return Properties
+     * @throws IOException an Exception
+     */
     public static Properties getLocalProperties(final Project project) throws IOException {
         final InputStream input = new FileInputStream((getExtensionDefinedPath(project)));
         final Properties prop = new OrderedProperties();
@@ -24,6 +31,14 @@ public final class ExtensionHelpers {
         return prop;
     }
 
+    /**
+     * writeLocalProperties
+     *
+     * @param project Project
+     * @param prop Properties
+     *
+     * @throws IOException an Exception
+     */
     public static void writeLocalProperties(final Project project, final Properties prop) throws IOException {
         final OutputStream output = new FileOutputStream((getExtensionDefinedPath(project)));
         prop.store(output, "Updating .properties - THIS FILE REGENERATED WHEN TASK IS EXECUTED");
@@ -31,6 +46,13 @@ public final class ExtensionHelpers {
         // System.out.println(prop);
     }
 
+    /**
+     * loadLocalPropertiesToProjectProperties
+     *
+     * @param project Project
+     *
+     * @param prop Properties
+     */
     public static void loadLocalPropertiesToProjectProperties(final Project project, final Properties prop) {
         project.setProperty("major", prop.getProperty("major"));
         project.setProperty("minor", prop.getProperty("minor"));
@@ -38,6 +60,13 @@ public final class ExtensionHelpers {
         project.setProperty("artifact-type", prop.getProperty("artifact-type"));
     }
 
+    /**
+     * getExtensionDefinedPath:
+     *
+     * @param project Project
+     *
+     * @return String
+     */
     public static String getExtensionDefinedPath(final Project project) {
         final SemanticVersioningWithBuildNumberPluginExtension extension = (SemanticVersioningWithBuildNumberPluginExtension) project.getExtensions().findByName("versionConfig");
         String path = "gradle.properties";
@@ -51,6 +80,14 @@ public final class ExtensionHelpers {
         return path;
     }
 
+    /**
+     * getExtensionDefinedRemoteBuild:
+     *
+     * @param project Project
+     * @param prop Properties
+     *
+     * @return boolean
+     */
     public static boolean getExtensionDefinedRemoteBuild(final Project project, final Properties prop) {
         boolean isRemoteBuild = false;
 
@@ -75,6 +112,13 @@ public final class ExtensionHelpers {
         return isRemoteBuild;
     }
 
+    /**
+     * getExtensionDefinedArtifactType:
+     *
+     * @param project Project
+     * @param prop Properties
+     * @return String
+     */
     protected static String getExtensionDefinedArtifactType(final Project project, final Properties prop) {
         final SemanticVersioningWithBuildNumberPluginExtension extension = (SemanticVersioningWithBuildNumberPluginExtension) project.getExtensions().findByName("versionConfig");
         String path = prop.getProperty("artifact-type");
@@ -88,6 +132,13 @@ public final class ExtensionHelpers {
         return path;
     }
 
+    /**
+     * generateVersion:
+     *
+     * @param project Project
+     *
+     * @param isRemoteBuild boolean
+     */
     public static void generateVersion(final Project project, final boolean isRemoteBuild) {
         if (isRemoteBuild) {
             project.setProperty("version", generateVersionWithBuildNumberAndArtifactType(project));
@@ -96,6 +147,13 @@ public final class ExtensionHelpers {
         }
     }
 
+    /**
+     * generateVersionWithArtifactType:
+     *
+     * @param project Project
+     *
+     * @return String
+     */
     public static String generateVersionWithArtifactType(final Project project) {
         final SemanticVersioningWithBuildNumberPluginExtension extension = (SemanticVersioningWithBuildNumberPluginExtension) project.getExtensions().findByName("versionConfig");
         final String artifactType = extension.getArtifactType();
@@ -118,6 +176,11 @@ public final class ExtensionHelpers {
         return version + "-" + project.getProperties().get("artifact-type");
     }
 
+    /**
+     * checkArtifactType:
+     *
+     * @param artifactType String
+     */
     private static void checkArtifactType(final String artifactType) {
         switch (artifactType) {
             case "LOCAL":
@@ -135,6 +198,13 @@ public final class ExtensionHelpers {
         }
     }
 
+    /**
+     * generateVersionWithBuildNumberAndArtifactType:
+     *
+     * @param project Project
+     *
+     * @return String
+     */
     public static String generateVersionWithBuildNumberAndArtifactType(final Project project) {
         final SemanticVersioningWithBuildNumberPluginExtension extension = (SemanticVersioningWithBuildNumberPluginExtension) project.getExtensions().findByName("versionConfig");
         final String ciBuildNumberEnvVarName = extension.getCiBuildNumberEnvVarName();

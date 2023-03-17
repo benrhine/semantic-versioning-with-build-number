@@ -11,13 +11,14 @@ import org.gradle.api.DefaultTask;
 import org.gradle.api.Project;
 import org.gradle.api.tasks.TaskAction;
 
-/**
- * --------------------------------------------------------------------------------------------------------------------
- * PrintVersionTask: TODO fill me in.
- * ------------------------------------------------------------------------------------------------------------------
- */
+/**  --------------------------------------------------------------------------------------------------------------------
+ * PrintVersionTask: Print the current version at any point via task.
+ * ------------------------------------------------------------------------------------------------------------------ */
 public class PrintVersionTask extends DefaultTask {
 
+    /**
+     * printVersion: Task that executes printing the version.
+     */
     @TaskAction
     public void printVersion() {
 

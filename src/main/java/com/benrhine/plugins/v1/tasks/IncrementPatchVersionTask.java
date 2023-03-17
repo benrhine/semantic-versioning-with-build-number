@@ -13,10 +13,15 @@ import org.gradle.api.Project;
 import org.gradle.api.tasks.TaskAction;
 
 /**  --------------------------------------------------------------------------------------------------------------------
- * PatchVersion: TODO fill me in.
+ * PatchVersion: Increment the patch version via task.
  * ------------------------------------------------------------------------------------------------------------------ */
 public class IncrementPatchVersionTask extends DefaultTask {
 
+    /**
+     * incrementPatchVersion: Task that executes incrementing the patch version.
+     *
+     * @throws Exception (optionally)
+     */
     @TaskAction
     public void incrementPatchVersion() throws Exception {
 
@@ -36,7 +41,7 @@ public class IncrementPatchVersionTask extends DefaultTask {
             // `build.gradle` extension block
             writeLocalProperties(project, prop);
             System.out.println(project.getProperties().get("version"));
-        } catch (IOException ex) {
+        } catch (final IOException ex) {
             ex.printStackTrace();
         }
     }

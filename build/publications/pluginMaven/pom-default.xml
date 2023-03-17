@@ -9,5 +9,5 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.benrhine</groupId>
   <artifactId>semantic-versioning-with-build-number</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
 </project>
