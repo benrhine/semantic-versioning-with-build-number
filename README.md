@@ -6,14 +6,14 @@ of the other similar plugins over the years but none of them were ever exactly w
 to use them. There was always something that was missing. With that said ... introducing ... drum roll please ...
 the `semantic-versioning-with-build-number` plugin.
 
-IMPORTANT!!! I wouldn't exactly call this a warning, but I don't want anyone caught off guard about how certain functionality
+*IMPORTANT!!! I wouldn't exactly call this a warning, but I don't want anyone caught off guard about how certain functionality
 in this plugin operates. When this plugin updates the project version it is fully regenerating whatever property file
 it is operating on. I realize that to some if they do not understand this up front that it might cause some concern. In
 an attempt to mitigate this I have implemented it in such a way that the order of the properties file is maintained and
 the only visible changes to the end user is updated versioning properties and a timestamp at the top of the file explaining
 that the file has been regenerated. I personally have worked on this part extensively as I make heavy use of property files
 and wanted to ensure that this would not cause me problems. I have not found this to be an issue but consider yourself
-duly informed on how this plugin works operationally.
+duly informed on how this plugin works operationally.*
 
 - [How to install](#how-to-install)
 - [What does it do?](#what-does-it-do)
