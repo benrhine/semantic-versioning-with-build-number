@@ -16,6 +16,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Properties;
 import com.benrhine.plugins.v1.SemanticVersioningWithBuildNumberPluginExtension;
+import com.benrhine.plugins.v1.tasks.DecrementMajorVersionTask;
+import com.benrhine.plugins.v1.tasks.DecrementMinorVersionTask;
+import com.benrhine.plugins.v1.tasks.DecrementPatchVersionTask;
 import com.benrhine.plugins.v1.tasks.IncrementMajorVersionTask;
 import com.benrhine.plugins.v1.tasks.IncrementMinorVersionTask;
 import com.benrhine.plugins.v1.tasks.IncrementPatchVersionTask;
@@ -34,6 +37,9 @@ public final class SemanticVersioningWithBuildNumberPlugin implements Plugin<Pro
     static final String INCREMENT_MAJOR_VERSION = "incrementMajorVersion";
     static final String INCREMENT_MINOR_VERSION = "incrementMinorVersion";
     static final String INCREMENT_PATCH_VERSION = "incrementPatchVersion";
+    static final String DECREMENT_MAJOR_VERSION = "decrementMajorVersion";
+    static final String DECREMENT_MINOR_VERSION = "decrementMinorVersion";
+    static final String DECREMENT_PATCH_VERSION = "decrementPatchVersion";
 
     /**
      * apply: Invoke the plugin to be applied on a given project.
@@ -48,6 +54,9 @@ public final class SemanticVersioningWithBuildNumberPlugin implements Plugin<Pro
         project.getTasks().register(INCREMENT_MAJOR_VERSION, IncrementMajorVersionTask.class);
         project.getTasks().register(INCREMENT_MINOR_VERSION, IncrementMinorVersionTask.class);
         project.getTasks().register(INCREMENT_PATCH_VERSION, IncrementPatchVersionTask.class);
+        project.getTasks().register(DECREMENT_MAJOR_VERSION, DecrementMajorVersionTask.class);
+        project.getTasks().register(DECREMENT_MINOR_VERSION, DecrementMinorVersionTask.class);
+        project.getTasks().register(DECREMENT_PATCH_VERSION, DecrementPatchVersionTask.class);
         project.getTasks().register(PRINT_VERSION, PrintVersionTask.class);
         // Apply plugin to project post initialization - without this it will not set the version correctly on initialization
         project.getGradle().afterProject(new Closure<Void>(project) {
