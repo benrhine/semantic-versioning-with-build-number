@@ -16,7 +16,7 @@ ext.vcsUser                                 = System.env.GITHUB_ACTOR         //
 ext.vcsPass                                 = System.env.GITHUB_TOKEN   // DO NOT PUT IN PROPERTIES FILE
 
 group 'com.benrhine'
-version '0.0.1-SNAPSHOT'
+version '0.0.2'
 
 
 gradlePlugin {

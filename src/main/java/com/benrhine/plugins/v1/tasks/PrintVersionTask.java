@@ -14,7 +14,7 @@ import org.gradle.api.tasks.TaskAction;
 /**  --------------------------------------------------------------------------------------------------------------------
  * PrintVersionTask: Print the current version at any point via task.
  * ------------------------------------------------------------------------------------------------------------------ */
-public final class PrintVersionTask extends DefaultTask {
+public class PrintVersionTask extends DefaultTask {
 
     /**
      * printVersion: Task that executes printing the version.

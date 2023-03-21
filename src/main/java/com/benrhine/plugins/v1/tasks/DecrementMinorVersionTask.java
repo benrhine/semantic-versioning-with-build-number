@@ -15,7 +15,7 @@ import org.gradle.api.tasks.TaskAction;
 /** --------------------------------------------------------------------------------------------------------------------
  * DecrementMinorVersionTask: Decrement the minor version.
  * ------------------------------------------------------------------------------------------------------------------ */
-public final class DecrementMinorVersionTask extends DefaultTask {
+public class DecrementMinorVersionTask extends DefaultTask {
 
     /**
      * decrementMinorVersion: Task that executes incrementing the minor version.

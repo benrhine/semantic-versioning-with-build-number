@@ -15,7 +15,7 @@ import org.gradle.api.tasks.TaskAction;
 /**  --------------------------------------------------------------------------------------------------------------------
  * MajorVersion: Increment the major version via task.
  * ------------------------------------------------------------------------------------------------------------------ */
-public final class IncrementMajorVersionTask extends DefaultTask {
+public class IncrementMajorVersionTask extends DefaultTask {
 
     /**
      * incrementMajorVersion: Task that executes incrementing the major version.
