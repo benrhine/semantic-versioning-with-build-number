@@ -2,20 +2,13 @@ package com.benrhine.plugins.v1;
 
 import static com.benrhine.plugins.v1.util.ExtensionHelpers.generateVersion;
 import static com.benrhine.plugins.v1.util.ExtensionHelpers.generateVersionWithArtifactType;
-import static com.benrhine.plugins.v1.util.ExtensionHelpers.generateVersionWithBuildNumberAndArtifactType;
-import static com.benrhine.plugins.v1.util.ExtensionHelpers.getExtensionDefinedPath;
 import static com.benrhine.plugins.v1.util.ExtensionHelpers.getExtensionDefinedRemoteBuild;
 import static com.benrhine.plugins.v1.util.ExtensionHelpers.getLocalProperties;
 import static com.benrhine.plugins.v1.util.ExtensionHelpers.loadLocalPropertiesToProjectProperties;
 import static com.benrhine.plugins.v1.util.ExtensionHelpers.writeLocalProperties;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Properties;
-import com.benrhine.plugins.v1.SemanticVersioningWithBuildNumberPluginExtension;
 import com.benrhine.plugins.v1.tasks.DecrementMajorVersionTask;
 import com.benrhine.plugins.v1.tasks.DecrementMinorVersionTask;
 import com.benrhine.plugins.v1.tasks.DecrementPatchVersionTask;
@@ -30,6 +23,11 @@ import org.gradle.api.Project;
 /** --------------------------------------------------------------------------------------------------------------------
  * SemanticVersioningWithBuildNumberPlugin: Plugin that supports semantic versioning with a build number. Can be used
  * strictly for project versioning or in conjunction with safe agile to match versions to pi and increments.
+ * - https://coderanch.com/t/544562/java/save-properties-file-affecting-existing
+ * - https://stackoverflow.com/questions/565932/a-better-class-to-update-property-files/565996#565996
+ * - https://stackoverflow.com/questions/17418106/appending-data-to-properties-file-comments-disappear-order-of-data-changed
+ * - https://javapointers.com/how-to/how-to-load-properties-using-apache-commons-configuration-2/
+ * - https://gist.github.com/workspc/a999801492f0ae2cbe07f36e6e256ce8
  * ------------------------------------------------------------------------------------------------------------------ */
 public final class SemanticVersioningWithBuildNumberPlugin implements Plugin<Project> {
     static final String VERSION_CONFIG = "versionConfig";

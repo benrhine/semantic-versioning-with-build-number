@@ -12,6 +12,72 @@ plugins {
     id 'com.gradle.plugin-publish' version '1.1.0'
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+// https://discuss.gradle.org/t/why-am-i-getting-this-no-matching-variant-failure-message/39248
+// https://discuss.gradle.org/t/why-does-my-consumer-prefer-java-8-variant-to-java-11-variant-while-building-with-java-11/39194/4
+configurations {
+    java11ApiElements {
+        canBeConsumed = true
+        canBeResolved = false
+        attributes {
+            attribute Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling, Bundling.EXTERNAL)
+            attribute Category.CATEGORY_ATTRIBUTE, objects.named(Category, Category.LIBRARY)
+            attribute LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements, LibraryElements.JAR)
+            attribute Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_API)
+            attribute TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 11
+        }
+        outgoing {
+            variants {
+                classes {
+                    artifact(sourceSets.main.java.classesDirectory) {
+                        attributes {
+                            attribute LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements, LibraryElements.CLASSES)
+                        }
+                        type = 'java-classes-directory'
+                    }
+                }
+            }
+        }
+        extendsFrom(configurations.apiElements)
+    }
+    java11RuntimeElements {
+        canBeConsumed = true
+        canBeResolved = false
+        attributes {
+            attribute Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling, Bundling.EXTERNAL)
+            attribute Category.CATEGORY_ATTRIBUTE, objects.named(Category, Category.LIBRARY)
+            attribute LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements, LibraryElements.JAR)
+            attribute Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_RUNTIME)
+            attribute TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 11
+        }
+        outgoing {
+            variants {
+                classes {
+                    artifact(sourceSets.main.java.classesDirectory) {
+                        attributes {
+                            attribute LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements, LibraryElements.CLASSES)
+                        }
+                        type = 'java-classes-directory'
+                    }
+                }
+                resources {
+                    artifact(sourceSets.main.output.resourcesDir) {
+                        attributes {
+                            attribute LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements, LibraryElements.CLASSES)
+                        }
+                        type = 'java-resources-directory'
+                    }
+                }
+            }
+        }
+        extendsFrom(configurations.runtimeElements)
+    }
+}
+
 ext.vcsUser                                 = System.env.GITHUB_ACTOR         // DO NOT PUT IN PROPERTIES FILE
 ext.vcsPass                                 = System.env.GITHUB_TOKEN   // DO NOT PUT IN PROPERTIES FILE
 
@@ -43,6 +109,7 @@ test {
 }
 
 dependencies {
+    //implementation 'org.apache.commons:commons-configuration2:2.8.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }

@@ -163,6 +163,16 @@ In addition to the tasks listed above this plugin also supports a number of conf
 By default, there is no need to do any additional configuration, by applying the plugin (and adding the properties) when
 your app loads the version will be created using this information and the tasks listed above will be available to you.
 
+**WARNING: Do not use the default if you use comments in your `gradle.properties` file as they WILL BE REMOVED when the
+file is re-written. If having comments in your property file is important to you use the [alternate properties file](#using-an-alternate-properties-file)
+approach. Using the alternate properties file approach ensures that the separate versioning properties are the only 
+file that is re-written**
+
+_Note: I am looking for an approach that will allow both maintaining order and comments but have not yet found one. The
+`org.apache.commons:commons-configuration2` in theory allows for maintaining comments but in my experimentation did not
+function as expected. It is possible to add header and footer comments, as well as a comment before every property but
+not before blocks of properties and this does not seem to maintain property order._
+
 ### Using an alternate properties file
 By default, this application uses the `gradle.properties` file but if you wish you can use a properties file in an alternate
 location. To achieve this, add the following block to your `build.gradle`
@@ -172,6 +182,8 @@ versionConfig {
     customVersionPropertiesPath = "$projectDir/src/main/resources/version.properties"
 }
 ```
+
+_Note: Use this approach if you need to maintain comments in your primary property file._
 
 #### version.properties
 I had experimented with using a `version.properties` instead of `gradle.properties` when I started writing this plugin, 
