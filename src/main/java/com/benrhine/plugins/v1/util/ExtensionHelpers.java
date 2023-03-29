@@ -7,13 +7,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Properties;
 import com.benrhine.plugins.v1.SemanticVersioningWithBuildNumberPluginExtension;
-import org.apache.commons.configuration2.Configuration;
-import org.apache.commons.configuration2.FileBasedConfiguration;
-import org.apache.commons.configuration2.PropertiesConfiguration;
-import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
-import org.apache.commons.configuration2.builder.fluent.Parameters;
-import org.apache.commons.configuration2.convert.DefaultListDelimiterHandler;
-import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.gradle.api.Project;
 
 /** --------------------------------------------------------------------------------------------------------------------
@@ -37,23 +30,23 @@ public final class ExtensionHelpers {
 
         return prop;
     }
-    public static FileBasedConfigurationBuilder<FileBasedConfiguration> apachePropertiesBuilder(final Project project) {
-        final Parameters params = new Parameters();
-        return new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
-                        .configure(params.properties()
-                                .setFileName(getExtensionDefinedPath(project))
-                                .setListDelimiterHandler(new DefaultListDelimiterHandler(',')));
-    }
-
-    public static Configuration getLocalPropertiesApache(final Project project) throws ConfigurationException {
-        Parameters params = new Parameters();
-        FileBasedConfigurationBuilder<FileBasedConfiguration> builder =
-                new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
-                        .configure(params.properties()
-                                .setFileName(getExtensionDefinedPath(project))
-                                .setListDelimiterHandler(new DefaultListDelimiterHandler(',')));
-        return builder.getConfiguration();
-    }
+//    public static FileBasedConfigurationBuilder<FileBasedConfiguration> apachePropertiesBuilder(final Project project) {
+//        final Parameters params = new Parameters();
+//        return new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
+//                        .configure(params.properties()
+//                                .setFileName(getExtensionDefinedPath(project))
+//                                .setListDelimiterHandler(new DefaultListDelimiterHandler(',')));
+//    }
+//
+//    public static Configuration getLocalPropertiesApache(final Project project) throws ConfigurationException {
+//        Parameters params = new Parameters();
+//        FileBasedConfigurationBuilder<FileBasedConfiguration> builder =
+//                new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class)
+//                        .configure(params.properties()
+//                                .setFileName(getExtensionDefinedPath(project))
+//                                .setListDelimiterHandler(new DefaultListDelimiterHandler(',')));
+//        return builder.getConfiguration();
+//    }
 
     /**
      * writeLocalProperties
@@ -84,12 +77,12 @@ public final class ExtensionHelpers {
         project.setProperty("artifact-type", prop.getProperty("artifact-type"));
     }
 
-    public static void loadLocalPropertiesToProjectPropertiesApache(final Project project, final Configuration config) {
-        project.setProperty("major", config.getProperty("major"));
-        project.setProperty("minor", config.getProperty("minor"));
-        project.setProperty("patch", config.getProperty("patch"));
-        project.setProperty("artifact-type", config.getProperty("artifact-type"));
-    }
+//    public static void loadLocalPropertiesToProjectPropertiesApache(final Project project, final Configuration config) {
+//        project.setProperty("major", config.getProperty("major"));
+//        project.setProperty("minor", config.getProperty("minor"));
+//        project.setProperty("patch", config.getProperty("patch"));
+//        project.setProperty("artifact-type", config.getProperty("artifact-type"));
+//    }
 
     /**
      * getExtensionDefinedPath:
@@ -143,29 +136,29 @@ public final class ExtensionHelpers {
         return isRemoteBuild;
     }
 
-    public static boolean getExtensionDefinedRemoteBuildApache(final Project project, final Configuration config) {
-        boolean isRemoteBuild = false;
-
-        if (project.hasProperty("remote-build")) {
-            final SemanticVersioningWithBuildNumberPluginExtension extension = (SemanticVersioningWithBuildNumberPluginExtension) project.getExtensions().findByName("versionConfig");
-
-            if (extension != null) {
-                isRemoteBuild = extension.isRemoteBuild();
-            } else {
-                final String propIsRemoteBuild = config.getProperty("remote-build").toString();
-
-                if (propIsRemoteBuild != null && !propIsRemoteBuild.isEmpty()) {
-                    try {
-                        isRemoteBuild = Boolean.parseBoolean(propIsRemoteBuild);
-                    } catch (final Exception e) {
-                        e.printStackTrace();
-                        System.out.println("Warning: Could not parse value from properties - defaulting remote build to false");
-                    }
-                }
-            }
-        }
-        return isRemoteBuild;
-    }
+//    public static boolean getExtensionDefinedRemoteBuildApache(final Project project, final Configuration config) {
+//        boolean isRemoteBuild = false;
+//
+//        if (project.hasProperty("remote-build")) {
+//            final SemanticVersioningWithBuildNumberPluginExtension extension = (SemanticVersioningWithBuildNumberPluginExtension) project.getExtensions().findByName("versionConfig");
+//
+//            if (extension != null) {
+//                isRemoteBuild = extension.isRemoteBuild();
+//            } else {
+//                final String propIsRemoteBuild = config.getProperty("remote-build").toString();
+//
+//                if (propIsRemoteBuild != null && !propIsRemoteBuild.isEmpty()) {
+//                    try {
+//                        isRemoteBuild = Boolean.parseBoolean(propIsRemoteBuild);
+//                    } catch (final Exception e) {
+//                        e.printStackTrace();
+//                        System.out.println("Warning: Could not parse value from properties - defaulting remote build to false");
+//                    }
+//                }
+//            }
+//        }
+//        return isRemoteBuild;
+//    }
 
     /**
      * getExtensionDefinedArtifactType:

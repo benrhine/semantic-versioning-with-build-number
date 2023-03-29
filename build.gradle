@@ -10,6 +10,7 @@ buildscript {
 
 plugins {
     id 'com.gradle.plugin-publish' version '1.1.0'
+    id 'com.benrhine.semantic-versioning-with-build-number' version '0.0.3'
 }
 
 java {
@@ -78,11 +79,11 @@ configurations {
     }
 }
 
-ext.vcsUser                                 = System.env.GITHUB_ACTOR         // DO NOT PUT IN PROPERTIES FILE
+ext.vcsUser                                 = System.env.GITHUB_ACTOR   // DO NOT PUT IN PROPERTIES FILE
 ext.vcsPass                                 = System.env.GITHUB_TOKEN   // DO NOT PUT IN PROPERTIES FILE
 
 group 'com.benrhine'
-version '0.0.2'
+//version '0.0.3'
 
 
 gradlePlugin {
@@ -114,11 +115,11 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
-task printVersion {
-    doLast {
-        println "$version"
-    }
-}
+//task printVersion {
+//    doLast {
+//        println "$version"
+//    }
+//}
 
 /** --------------------------------------------------------------------------------------------------------------------
  * Publish: Modern way to publish artifacts using the maven-publish plugin (Gradle 7+)
@@ -142,9 +143,10 @@ publishing {
             }
         }
     }
-    publications {
-        gpr(MavenPublication) {
-            from(components.java)
-        }
-    }
+    // This block already comes in with gradle publish
+//    publications {
+//        gpr(MavenPublication) {
+//            from(components.java)
+//        }
+//    }
 }
